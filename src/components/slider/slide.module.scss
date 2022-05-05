@@ -1,0 +1,70 @@
+.containerSlide {
+  height: 400px;
+  max-width: 100%;
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+  transform: translate3d(0, 0, 0);
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.contentSlide {
+  height: 400px;
+  width: 3280px;
+  //background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/3/collage.jpg);
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  //cursor: pointer;
+  transform: translate3d(0, 0, 0);
+}
+
+
+.containerSlide .contentSlide {
+  animation: moveSlideshow 30s linear infinite;
+}
+
+.contentSlide:hover {
+  animation-play-state: paused;
+}
+
+@keyframes moveSlideshow {
+  100% { 
+    transform: translateX(-60%);  
+  }
+}
+
+.coverAnime{
+  border-radius: 4%;
+}
+
+.modal {
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  background: rgba(12, 5, 66, 0.15)
+}
+
+.infoModal{ 
+  border-radius: 0 4% 4% 0;
+}
+
+.container .btn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  background-color: #555;
+  color: white;
+  font-size: 16px;
+  padding: 12px 24px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
