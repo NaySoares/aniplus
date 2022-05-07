@@ -16,6 +16,7 @@ const PageAnime = () => {
       <FlexDefault>
         <Overview />
       </FlexDefault>
+      
       <FlexDefault>
         <Flex
           pt={20}
@@ -37,6 +38,7 @@ const PageAnime = () => {
           </Button>
         </Flex>
       </FlexDefault>
+
       <FlexDefault>
         <ListSeason />
       </FlexDefault>

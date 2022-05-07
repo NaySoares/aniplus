@@ -3,7 +3,18 @@ import Navbar from '../header/navbar'
 import { Box, Container } from '@chakra-ui/react'
 
 const Main = ({ children, router }) => {
-  const isSpecialPage = router.asPath == "/anime"
+  let isSpecialPage
+  switch (router.asPath) {
+    case '/anime':
+      isSpecialPage = true
+      break;
+    case '/categories':
+      isSpecialPage = true
+      break;
+    default:
+      isSpecialPage = false
+  }
+
   return (
     <Box as='main' pb={isSpecialPage ? 0 : 8}>
       <Head>

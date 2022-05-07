@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { VStack, Text, Flex, Icon, Button } from '@chakra-ui/react';
+import { motion } from 'framer-motion'
 import Image from 'next/image';
 import imgCover1 from '../../assets/thumbs/1.jpg';
 import imgCover2 from '../../assets/thumbs/2.jpg';
@@ -11,6 +12,35 @@ import { FaPlay } from 'react-icons/fa';
 
 const ListSeason = () => {
   const [seasonCurrent, setSeasonCurrent] = useState("Season 01");
+
+  const container = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        delayChildren: 0.3,
+        staggerChildren: 0.3
+      }
+    }
+  };
+
+  const item = {
+    hidden: { x: 20, opacity: 0 },
+    visible: {
+      x: 0,
+      opacity: 1
+    }
+  };
+  
+  const itemSeason = {
+    hidden: { y: 20, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1
+    }
+  };
+
+  const arrThumb = [imgCover1, imgCover3, imgCover2, imgCover4, imgCover3, imgCover1, imgCover2, imgCover4]
 
   const LinkSeason = ({ children }) => {
 
@@ -35,41 +65,58 @@ const ListSeason = () => {
 
   return (
     <Flex pt={20}>
-      <VStack gap={1}>
-        <LinkSeason>
-          Season 01
-        </LinkSeason>
-        <LinkSeason>
-          Filme 01
-        </LinkSeason>
-      </VStack>
-
-      <VStack
-        h="600px"
-        overflow="scroll"
-        display="inlineBlock"
-        mx={4}
-        className={styles.listEps}
+      <motion.ul
+        variants={container}
+        initial="hidden"
+        animate="visible"
+        transition={{ duration: 1, type: "ease" }}
       >
-        <Thumb thumb={imgCover4} />
-        <Thumb thumb={imgCover2} />
-        <Thumb thumb={imgCover3} />
-        <Thumb thumb={imgCover1} />
-        <Thumb thumb={imgCover4} />
-        <Thumb thumb={imgCover2} />
-        <Thumb thumb={imgCover3} />
-        <Thumb thumb={imgCover1} />
-        <Thumb thumb={imgCover2} />
-      </VStack>
+        <VStack gap={1}>
+          <motion.p variants={itemSeason}>
+            <LinkSeason>
+              Season 01
+            </LinkSeason>
+          </motion.p>
+
+          <motion.p variants={itemSeason} >
+            <LinkSeason>
+              Filme 01
+            </LinkSeason>
+          </motion.p>
+        </VStack>
+      </motion.ul>
+
+      <motion.ul
+        variants={container}
+        initial="hidden"
+        animate="visible"
+        transition={{ duration: 1, type: "ease" }}
+      >
+        <VStack
+          h="600px"
+          overflow="scroll"
+          display="inlineBlock"
+          mx={4}
+          className={styles.listEps}
+        >
+          {arrThumb.map((thumbImg, i) => {
+            return (
+              <motion.li key={i} variants={item}>
+                <Thumb thumb={thumbImg} />
+              </motion.li>
+            )
+          })}
+        </VStack>
+      </motion.ul>
     </Flex>
   )
 }
 
 const Thumb = ({ thumb }) => {
   return (
-    <div style={{ overflow: 'hidden', borderRadius: "5px", position: 'relative'}}>
+    <div style={{ overflow: 'hidden', borderRadius: "5px", position: 'relative' }}>
       <Button
-        pos="absolute"  
+        pos="absolute"
         color="secundary"
         bg="transparent"
         border="1px solid white"
